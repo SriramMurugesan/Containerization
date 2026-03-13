@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  # The FastAPI Backend
+  api:
+    build: ../fastapi-docker
+    ports:
+      - "8000:8000"
+    environment:
+      - ENV=development
+  
+  # The React Frontend
+  web:
+    build: ../react-docker
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
